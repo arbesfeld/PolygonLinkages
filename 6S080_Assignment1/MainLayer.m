@@ -60,8 +60,8 @@ float angle, oldDist, segmentAngle;
     float offsetX = thickness / 4 * cos(theta);
     float offsetY = thickness / 4 * sin(theta);
     
-    //ccDrawFilledCircle( p1, thickness/4, CC_DEGREES_TO_RADIANS(360), 60, NO);
-    //ccDrawFilledCircle( p2, thickness/4, CC_DEGREES_TO_RADIANS(360), 60, NO);
+    ccDrawFilledCircle( p1, thickness/5, CC_DEGREES_TO_RADIANS(360), 60, NO);
+    ccDrawFilledCircle( p2, thickness/5, CC_DEGREES_TO_RADIANS(360), 60, NO);
     
     glLineWidth(1.5f);
     ccDrawColor4F(0.0f/255.0f, 0.0f/255.0f, 0.0f/255.0f, 255.0f/255.0f);
@@ -282,6 +282,20 @@ float angle, oldDist, segmentAngle;
         angle = 2.0;
         self.isTouchEnabled = YES;
         segmentsCompleted = NO;
+        
+        CCMenuItem *menuItem = [CCMenuItemFont
+                                itemWithString:@"Continue"
+                                target:self selector:@selector(continueButtonTapped:)];
+        
+        CCMenuItem *menuItem2 = [CCMenuItemFont
+                                 itemWithString:@"Restart"
+                                 target:self selector:@selector(returnButtonTapped:)];
+        menuItem.position = ccp(100, 90);
+        menuItem2.position = ccp(100, 40);
+        CCMenu *menu = [CCMenu menuWithItems:menuItem, menuItem2, nil];
+        menu.position = CGPointZero;
+        [self addChild:menu z:0.2];
+        
 	}
 	return self;
 }
@@ -372,28 +386,24 @@ float angle, oldDist, segmentAngle;
     else {
         polygonCompleted = YES;
         
-        CCMenuItem *menuItem = [CCMenuItemFont
-                                itemWithString:@"Continue"
-                                target:self selector:@selector(continueButtonTapped:)];
-        
-        CCMenuItem *menuItem2 = [CCMenuItemFont
-                                itemWithString:@"Restart"
-                                target:self selector:@selector(returnButtonTapped:)];
-        menuItem.position = ccp(100, 90);
-        menuItem2.position = ccp(100, 40);
-        CCMenu *menu = [CCMenu menuWithItems:menuItem, menuItem2, nil];
-        menu.position = CGPointZero;
-        [self addChild:menu z:0.2];
-        
+       
         [polygonLocs addObject:polygonLocs[0]];
         NSLog(@"Polygon completed!");
     }
 }
 - (void)continueButtonTapped:(id)sender {
     NSLog(@"Continue button tapped!");
-    segmentsCompleted = YES;
-    sets = [[NSMutableArray alloc] init];
-    segmentAngle = 0.0;
+    if(!polygonCompleted) {
+        polygonCompleted = YES;
+    }
+    else if(polygonCompleted && !segmentsCompleted) {
+        segmentsCompleted = YES;
+        sets = [[NSMutableArray alloc] init];
+        segmentAngle = 0.0;
+    }
+    else {
+        return;
+    }
 }
 - (void)returnButtonTapped:(id)sender {
     NSLog(@"Return button tapped!");

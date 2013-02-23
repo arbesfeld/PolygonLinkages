@@ -19,11 +19,11 @@ NSMutableArray *polygonLocs;
 NSMutableArray *sets;
 
 CGFloat const THRESHOLD = 20.0;
-float const thickness = 12.0;
+float const thickness = 18.0;
 BOOL polygonCompleted, segmentsCompleted, firstRun;
 int fadeCounter;
 float angle, oldDist, segmentAngle;
-
+float randColor[6];
 #pragma mark - HelloWorldLayer
 
 // HelloWorldLayer implementation
@@ -45,31 +45,55 @@ float angle, oldDist, segmentAngle;
 	return scene;
 }
 
--(CGFloat) distanceBetweenP1:(CGPoint)p1 P2:(CGPoint)p2
+-(CGFloat) distanceBetweenP1:(CGPoint)p1 P2:(CGPoint)p2 
 {
     return sqrt( pow((p2.x - p1.x), 2) + pow((p2.y - p1.y), 2) );
 }
 
--(void) tracePathFromP1:(CGPoint)p1 P2:(CGPoint)p2
+-(void) tracePathFromP1:(CGPoint)p1 P2:(CGPoint)p2 color:(int)color second:(BOOL)second
 {
-    glLineWidth(thickness);
-    ccDrawColor4F(255.0f/255.0f, 255.0f/255.0f, 255.0f/255.0f, 255.0f/255.0f);
-    ccDrawLine(p1, p2);
-    
     float theta = atan( (p2.y - p1.y) / (p2.x - p1.x) ) + M_PI/2;
     float offsetX = thickness / 4 * cos(theta);
     float offsetY = thickness / 4 * sin(theta);
+    float changeX = (p1.x - p2.x) * 0.02;
+    float changeY = (p1.y - p2.y) * 0.02;
     
-    ccDrawFilledCircle( p1, thickness/5, CC_DEGREES_TO_RADIANS(360), 60, NO);
-    ccDrawFilledCircle( p2, thickness/5, CC_DEGREES_TO_RADIANS(360), 60, NO);
-    
-    glLineWidth(1.5f);
+    glLineWidth(3.0f);
     ccDrawColor4F(0.0f/255.0f, 0.0f/255.0f, 0.0f/255.0f, 255.0f/255.0f);
     ccDrawLine(CGPointMake(p1.x + offsetX, p1.y + offsetY),
                CGPointMake(p2.x + offsetX, p2.y + offsetY));
     ccDrawLine(CGPointMake(p1.x - offsetX, p1.y - offsetY),
                CGPointMake(p2.x - offsetX, p2.y - offsetY));
     
+    p1 = CGPointMake(p1.x + changeX, p1.y + changeY);
+    p2 = CGPointMake(p2.x - changeX, p2.y - changeY);
+    
+
+    
+    //ccDrawFilledCircle( p1, thickness/4, CC_DEGREES_TO_RADIANS(360), 60, NO);
+    //ccDrawFilledCircle( p2, thickness/4, CC_DEGREES_TO_RADIANS(360), 60, NO);
+    ccDrawColor4F(0.0f/255.0f, 0.0f/255.0f, 0.0f/255.0f, 255.0f/255.0f);
+    
+    if(second) {
+        ccDrawLine(CGPointMake(p2.x + offsetX, p2.y + offsetY),
+                   CGPointMake(p2.x - offsetX, p2.y - offsetY));
+    }
+    else {
+        ccDrawLine(CGPointMake(p1.x + offsetX, p1.y + offsetY),
+                   CGPointMake(p1.x - offsetX, p1.y - offsetY));
+    }
+    glLineWidth(thickness);
+    
+    if(color == 0) {
+        ccDrawColor4F(180.0f/255.0f, 180.0f/255.0f, 180.0f/255.0f, 255.0f/255.0f);
+    }
+    else if(color == 1) {
+        ccDrawColor4F(randColor[0]/255.0f, randColor[1]/255.0f, randColor[2]/255.0f, 255.0f/255.0f);
+    }
+    else {
+        ccDrawColor4F(randColor[3]/255.0f, randColor[4]/255.0f, randColor[5]/255.0f, 255.0f/255.0f);
+    }
+    ccDrawLine(p1, p2);
 //    glLineWidth(6.0f);
 //    ccDrawColor4F(0.0f/255.0f, 0.0f/255.0f, 0.0f/255.0f, 255.0f/255.0f);
 //    ccDrawCircle( p1, thickness/4, CC_DEGREES_TO_RADIANS(360), 60, NO);
@@ -150,15 +174,18 @@ float angle, oldDist, segmentAngle;
             sets[i] = [[NSMutableArray alloc] initWithObjects:[NSValue valueWithCGPoint:p1Disp],
                        [NSValue valueWithCGPoint:ctrDisp],
                        [NSValue valueWithCGPoint:p2Disp], nil];
-            [self tracePathFromP1:p1Disp P2:ctrDisp];
+            [self tracePathFromP1:p1Disp P2:ctrDisp color:i%2+1 second:NO];
             
-            [self tracePathFromP1:ctrDisp P2:p2Disp];
+            [self tracePathFromP1:ctrDisp P2:p2Disp color:i%2+1 second:YES];
             
             glLineWidth(2.0f);
             ccDrawColor4F(0.0f/0.0f, 0.0f/255.0f, 0.0f/255.0f, 255.0f/255.0f);
             
             ccDrawCircle( p1Disp, thickness/6, CC_DEGREES_TO_RADIANS(360), 60, NO);
             ccDrawCircle( p2Disp, thickness/6, CC_DEGREES_TO_RADIANS(360), 60, NO);
+            
+            ccDrawCircle( p1Disp, thickness/8, CC_DEGREES_TO_RADIANS(360), 60, NO);
+            ccDrawCircle( p2Disp, thickness/8, CC_DEGREES_TO_RADIANS(360), 60, NO);
             ccDrawFilledCircle( ctrDisp, thickness/6, CC_DEGREES_TO_RADIANS(360), 60, NO);
         }
         
@@ -212,20 +239,16 @@ float angle, oldDist, segmentAngle;
                 pointSecondP1 = pointSecondP2;
                 pointSecondP2 = tmp;
             }
-            [self tracePathFromP1:pointFirstP1 P2:p2];
-            [self tracePathFromP1:p2 P2:pointSecondP2];
+            [self tracePathFromP1:pointFirstP1 P2:p2 color:0 second:NO];
+            [self tracePathFromP1:p2 P2:pointSecondP2 color:0 second:YES];
             
             
-            [self tracePathFromP1:pointFirstP2 P2:p2];
-            [self tracePathFromP1:p2 P2:pointSecondP1];
+            [self tracePathFromP1:pointFirstP2 P2:p2 color:0 second:NO];
+            [self tracePathFromP1:p2 P2:pointSecondP1 color:0 second:YES];
             
             glLineWidth(2.0f);
             ccDrawColor4F(0.0f/0.0f, 0.0f/255.0f, 0.0f/255.0f, 255.0f/255.0f);
             
-            ccDrawCircle( pointFirstP1, thickness/6, CC_DEGREES_TO_RADIANS(360), 60, NO);
-            ccDrawCircle( pointFirstP2, thickness/6, CC_DEGREES_TO_RADIANS(360), 60, NO);
-            ccDrawCircle( pointSecondP1, thickness/6, CC_DEGREES_TO_RADIANS(360), 60, NO);
-            ccDrawCircle( pointSecondP2, thickness/6, CC_DEGREES_TO_RADIANS(360), 60, NO);
             ccDrawFilledCircle( p2, thickness/6, CC_DEGREES_TO_RADIANS(360), 60, NO);
             
             if(segmentsCompleted) {
@@ -246,7 +269,7 @@ float angle, oldDist, segmentAngle;
         }
     }
     
-    ccDrawColor4F(171/255.0f, 217/255.0f, 140/255.0f, 255.0f*(1.0 - fadeCounter/90.0)/255.0f);
+    ccDrawColor4F(171/255.0f, 217/255.0f, 140/255.0f, 255.0f*(1.0 - fadeCounter/60.0)/255.0f);
     glLineWidth(6.0f);
     for (int i = 0; i < [polygonLocs count] - 1; i++) {
         ccDrawLine( [polygonLocs[i] CGPointValue], [polygonLocs[i+1] CGPointValue]);
@@ -296,6 +319,12 @@ float angle, oldDist, segmentAngle;
         menu.position = CGPointZero;
         [self addChild:menu z:0.2];
         
+        randColor[0] = arc4random() % 255;
+        randColor[1] = arc4random() % 255;
+        randColor[2] = arc4random() % 255;
+        randColor[3] = 255 - randColor[1];
+        randColor[4] = 255 - randColor[2];
+        randColor[5] = 255 - randColor[0];
 	}
 	return self;
 }
@@ -410,6 +439,13 @@ float angle, oldDist, segmentAngle;
     polygonCompleted = NO;
     segmentsCompleted = NO;
     polygonLocs = [[NSMutableArray alloc] init];
+    
+    randColor[0] = arc4random() % 255;
+    randColor[1] = arc4random() % 255;
+    randColor[2] = arc4random() % 255;
+    randColor[3] = 255 - randColor[1];
+    randColor[4] = 255 - randColor[2];
+    randColor[5] = 255 - randColor[0];
 }
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc

@@ -1,5 +1,5 @@
 //
-//  HelloWorldLayer.h
+//  MainLayer.h
 //  6S080_Assignment1
 //
 //  Created by Matthew Arbesfeld on 2/20/13.

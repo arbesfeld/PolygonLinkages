@@ -29,12 +29,12 @@ CGPoint initialTouchPoint;
 CGPoint * interiorPoli;
 
 
-#pragma mark - HelloWorldLayer
+#pragma mark - MainLayer
 
-// HelloWorldLayer implementation
+// MainLayer implementation
 @implementation MainLayer
 
-// Helper class method that creates a Scene with the HelloWorldLayer as the only child.
+// Helper class method that creates a Scene with the MainLayer as the only child.
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -134,11 +134,11 @@ CGPoint * interiorPoli;
     }
     if(segmentsCompleted && sets.count != 0) {
         int currentPoliPoint = 0;
-        ccDrawSolidPoly(interiorPoli, polygonLocs.count, ccc4f(randColor[6]/255.0f, randColor[7]/255.0f, randColor[8]/255.0f, 255/255.0f));
+        //ccDrawSolidPoly(interiorPoli, polygonLocs.count, ccc4f(randColor[6]/255.0f, randColor[7]/255.0f, randColor[8]/255.0f, 255/255.0f));
         
         glLineWidth(3.0f);
         ccDrawColor4F(0/255.0f, 0/255.0f, 0/255.0f, 255.0f/255.0f);
-        ccDrawPoly(interiorPoli, polygonLocs.count, YES);
+        //ccDrawPoly(interiorPoli, polygonLocs.count, YES);
         
         //ccDrawSolidPoly(interiorPoli, polygonLocs.count, ccc4f(180.0f/255.0f, 180.0f/255.0f, 180.0f/255.0f, 155/255.0f));
         for (int i = 0; i < sets.count; i++) {
@@ -214,7 +214,7 @@ CGPoint * interiorPoli;
                        [NSValue valueWithCGPoint:p2Disp], nil];
             if(bigArray) {
                 
-                [self tracePathFromP1:ctrDisp P2:interiorDisp color:i%2+1 second:NO];
+            //    [self tracePathFromP1:ctrDisp P2:interiorDisp color:i%2+1 second:NO];
                 [sets[i] addObject:[NSValue valueWithCGPoint:interiorDisp]];
             }
             [self tracePathFromP1:p1Disp P2:ctrDisp color:i%2+1 second:NO];
@@ -229,11 +229,11 @@ CGPoint * interiorPoli;
     //stage 3: modify the physical linkages
     else if(polygonCompleted) {
         
-        ccDrawSolidPoly(interiorPoli, polygonLocs.count, ccc4f(180.0f/255.0f, 180.0f/255.0f, 180.0f/255.0f, 255/255.0f));
+        //ccDrawSolidPoly(interiorPoli, polygonLocs.count, ccc4f(180.0f/255.0f, 180.0f/255.0f, 180.0f/255.0f, 255/255.0f));
         
         glLineWidth(3.0f);
         ccDrawColor4F(0/255.0f, 0/255.0f, 0/255.0f, 255.0f/255.0f);
-        ccDrawPoly(interiorPoli, polygonLocs.count, YES);
+        //ccDrawPoly(interiorPoli, polygonLocs.count, YES);
         
         ccDrawColor4F(171/255.0f, 217/255.0f, 140/255.0f, 255.0f/255.0f);
         
@@ -281,9 +281,9 @@ CGPoint * interiorPoli;
                 pointSecondP2 = tmp;
             }
             
-            if(i != polygonLocs.count - 1) {
-                [self tracePathFromP1:p2 P2:interiorPoli[i+1] color:0 second:NO];
-            }
+            //if(i != polygonLocs.count - 1) {
+            //    [self tracePathFromP1:p2 P2:interiorPoli[i+1] color:0 second:NO];
+            //}
             [self tracePathFromP1:pointFirstP1 P2:p2 color:0 second:NO];
             [self tracePathFromP1:p2 P2:pointSecondP2 color:0 second:YES];
             
@@ -338,7 +338,7 @@ CGPoint * interiorPoli;
             interiorPoli[i].y += interiorPolygonOffset.y;
         }
         
-        ccDrawSolidPoly(interiorPoli, polygonLocs.count, ccc4f(171/255.0f, 217/255.0f, 140/255.0f, 155.0f/255.0f));
+        //ccDrawSolidPoly(interiorPoli, polygonLocs.count, ccc4f(171/255.0f, 217/255.0f, 140/255.0f, 155.0f/255.0f));
     }
     //stage 1 (drawing the outline)
     else {
@@ -522,10 +522,7 @@ CGPoint * interiorPoli;
 - (void)continueButtonTapped:(id)sender {
     NSLog(@"Continue button tapped!");
     
-    if(!outlineCompleted) {
-        outlineCompleted = YES;
-    }
-    else if(outlineCompleted && !polygonCompleted) {
+    if(!polygonCompleted) {
         polygonCompleted = YES;
     }
     else if(polygonCompleted && !segmentsCompleted) {

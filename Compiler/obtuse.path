@@ -1,0 +1,1406 @@
+dof: 3
+units: mm mm mm 
+nx ny nz: 1000 1000 1
+dx dy dz: 1.000000 1.000000 0.000000
+xmin ymin zmin: 0.000000 0.000000 0.000000
+path start:
+segment start:
+35 116 0 
+37 128 0 
+segment end:
+segment start:
+35 50 0 
+35 116 0 
+segment end:
+segment start:
+37 128 0 
+65 189 0 
+segment end:
+segment start:
+65 50 0 
+65 116 0 
+92 176 0 
+segment end:
+segment start:
+47 47 0 
+52 46 0 
+54 49 0 
+53 52 0 
+48 54 0 
+46 52 0 
+45 49 0 
+47 47 0 
+47 47 0 
+segment end:
+segment start:
+47 115 0 
+51 114 0 
+54 117 0 
+53 120 0 
+50 122 0 
+46 120 0 
+45 117 0 
+47 115 0 
+47 115 0 
+segment end:
+segment start:
+74 175 0 
+79 174 0 
+81 177 0 
+81 180 0 
+77 182 0 
+75 181 0 
+73 179 0 
+74 175 0 
+74 175 0 
+segment end:
+segment start:
+35 50 0 
+36 44 0 
+40 38 0 
+45 35 0 
+53 35 0 
+58 37 0 
+64 44 0 
+65 50 0 
+segment end:
+segment start:
+92 176 0 
+94 183 0 
+93 188 0 
+88 194 0 
+82 197 0 
+75 197 0 
+67 192 0 
+65 189 0 
+segment end:
+segment start:
+147 116 0 
+149 128 0 
+segment end:
+segment start:
+147 50 0 
+147 116 0 
+segment end:
+segment start:
+149 128 0 
+177 189 0 
+segment end:
+segment start:
+177 50 0 
+177 116 0 
+205 176 0 
+segment end:
+segment start:
+159 47 0 
+162 45 0 
+165 47 0 
+166 51 0 
+164 53 0 
+160 53 0 
+158 49 0 
+159 47 0 
+159 47 0 
+segment end:
+segment start:
+159 115 0 
+163 114 0 
+165 115 0 
+166 118 0 
+163 122 0 
+159 121 0 
+158 117 0 
+159 115 0 
+159 115 0 
+segment end:
+segment start:
+187 175 0 
+191 174 0 
+194 177 0 
+193 181 0 
+191 182 0 
+187 182 0 
+185 179 0 
+187 175 0 
+187 175 0 
+segment end:
+segment start:
+147 50 0 
+148 43 0 
+153 37 0 
+161 35 0 
+167 35 0 
+173 40 0 
+176 45 0 
+177 50 0 
+segment end:
+segment start:
+205 176 0 
+206 184 0 
+203 191 0 
+200 195 0 
+192 198 0 
+185 196 0 
+179 192 0 
+177 189 0 
+segment end:
+segment start:
+259 112 0 
+265 130 0 
+268 133 0 
+segment end:
+segment start:
+259 50 0 
+259 112 0 
+segment end:
+segment start:
+268 133 0 
+298 164 0 
+segment end:
+segment start:
+289 50 0 
+289 112 0 
+319 143 0 
+segment end:
+segment start:
+271 47 0 
+274 45 0 
+276 46 0 
+278 50 0 
+276 53 0 
+273 54 0 
+270 51 0 
+270 48 0 
+271 47 0 
+271 47 0 
+segment end:
+segment start:
+271 113 0 
+275 112 0 
+278 114 0 
+277 118 0 
+275 120 0 
+273 120 0 
+270 117 0 
+271 113 0 
+271 113 0 
+segment end:
+segment start:
+301 144 0 
+305 143 0 
+307 144 0 
+308 148 0 
+305 151 0 
+302 150 0 
+300 147 0 
+301 144 0 
+301 144 0 
+segment end:
+segment start:
+259 50 0 
+260 43 0 
+266 37 0 
+270 35 0 
+281 36 0 
+286 40 0 
+288 46 0 
+289 50 0 
+segment end:
+segment start:
+319 143 0 
+322 148 0 
+323 153 0 
+321 161 0 
+317 166 0 
+308 169 0 
+301 167 0 
+298 164 0 
+segment end:
+segment start:
+371 112 0 
+375 127 0 
+380 133 0 
+segment end:
+segment start:
+371 50 0 
+371 112 0 
+segment end:
+segment start:
+380 133 0 
+410 164 0 
+segment end:
+segment start:
+401 50 0 
+401 112 0 
+431 143 0 
+segment end:
+segment start:
+383 47 0 
+389 46 0 
+390 49 0 
+389 52 0 
+387 54 0 
+383 52 0 
+382 50 0 
+383 47 0 
+383 47 0 
+segment end:
+segment start:
+383 113 0 
+385 112 0 
+389 113 0 
+390 115 0 
+389 119 0 
+385 120 0 
+382 117 0 
+383 113 0 
+383 113 0 
+segment end:
+segment start:
+413 144 0 
+417 143 0 
+421 146 0 
+420 149 0 
+417 151 0 
+414 150 0 
+412 147 0 
+413 144 0 
+413 144 0 
+segment end:
+segment start:
+371 50 0 
+373 42 0 
+380 36 0 
+386 35 0 
+392 36 0 
+398 40 0 
+401 47 0 
+401 50 0 
+segment end:
+segment start:
+431 143 0 
+434 147 0 
+436 155 0 
+435 159 0 
+430 165 0 
+422 169 0 
+416 168 0 
+410 164 0 
+segment end:
+segment start:
+483 89 0 
+490 109 0 
+segment end:
+segment start:
+483 50 0 
+483 89 0 
+segment end:
+segment start:
+490 109 0 
+533 159 0 
+segment end:
+segment start:
+513 50 0 
+513 89 0 
+556 140 0 
+segment end:
+segment start:
+495 47 0 
+498 45 0 
+502 47 0 
+502 51 0 
+501 53 0 
+496 53 0 
+494 51 0 
+495 47 0 
+495 47 0 
+segment end:
+segment start:
+495 90 0 
+499 88 0 
+502 91 0 
+502 95 0 
+499 97 0 
+495 96 0 
+495 90 0 
+495 90 0 
+495 90 0 
+segment end:
+segment start:
+538 140 0 
+541 139 0 
+544 141 0 
+545 144 0 
+542 147 0 
+538 146 0 
+537 141 0 
+538 140 0 
+538 140 0 
+segment end:
+segment start:
+483 50 0 
+485 43 0 
+488 39 0 
+491 36 0 
+501 35 0 
+508 38 0 
+512 43 0 
+513 50 0 
+segment end:
+segment start:
+556 140 0 
+559 146 0 
+558 154 0 
+555 160 0 
+550 163 0 
+540 164 0 
+534 161 0 
+533 159 0 
+segment end:
+segment start:
+595 89 0 
+599 103 0 
+603 109 0 
+segment end:
+segment start:
+595 50 0 
+595 89 0 
+segment end:
+segment start:
+603 109 0 
+645 159 0 
+segment end:
+segment start:
+625 50 0 
+625 89 0 
+668 140 0 
+segment end:
+segment start:
+607 47 0 
+612 46 0 
+615 49 0 
+614 52 0 
+610 54 0 
+606 51 0 
+607 47 0 
+607 47 0 
+segment end:
+segment start:
+607 90 0 
+612 89 0 
+615 92 0 
+613 96 0 
+611 97 0 
+608 96 0 
+606 93 0 
+607 90 0 
+607 90 0 
+segment end:
+segment start:
+650 140 0 
+653 139 0 
+656 140 0 
+657 143 0 
+656 146 0 
+652 147 0 
+649 144 0 
+650 140 0 
+650 140 0 
+segment end:
+segment start:
+595 50 0 
+598 41 0 
+603 37 0 
+611 35 0 
+618 37 0 
+624 42 0 
+625 50 0 
+segment end:
+segment start:
+668 140 0 
+671 146 0 
+671 154 0 
+666 161 0 
+659 164 0 
+652 164 0 
+645 159 0 
+segment end:
+segment start:
+35 272 0 
+38 287 0 
+42 292 0 
+segment end:
+segment start:
+35 210 0 
+35 272 0 
+segment end:
+segment start:
+42 292 0 
+95 352 0 
+segment end:
+segment start:
+65 210 0 
+65 272 0 
+118 332 0 
+segment end:
+segment start:
+47 207 0 
+51 206 0 
+53 208 0 
+53 211 0 
+50 214 0 
+46 212 0 
+45 209 0 
+47 207 0 
+47 207 0 
+segment end:
+segment start:
+47 272 0 
+51 271 0 
+53 274 0 
+53 277 0 
+52 279 0 
+46 278 0 
+45 274 0 
+47 272 0 
+47 272 0 
+segment end:
+segment start:
+100 333 0 
+103 331 0 
+106 334 0 
+106 338 0 
+102 340 0 
+100 339 0 
+98 336 0 
+100 333 0 
+100 333 0 
+segment end:
+segment start:
+35 210 0 
+37 202 0 
+41 197 0 
+46 195 0 
+57 197 0 
+62 201 0 
+64 206 0 
+65 210 0 
+segment end:
+segment start:
+118 332 0 
+120 337 0 
+121 345 0 
+119 350 0 
+113 356 0 
+106 357 0 
+101 356 0 
+95 352 0 
+segment end:
+segment start:
+147 272 0 
+150 286 0 
+154 292 0 
+segment end:
+segment start:
+147 210 0 
+147 272 0 
+segment end:
+segment start:
+154 292 0 
+207 352 0 
+segment end:
+segment start:
+177 210 0 
+177 272 0 
+230 332 0 
+segment end:
+segment start:
+159 207 0 
+162 206 0 
+165 208 0 
+166 211 0 
+162 214 0 
+159 213 0 
+157 209 0 
+159 207 0 
+159 207 0 
+segment end:
+segment start:
+159 272 0 
+163 271 0 
+166 274 0 
+164 279 0 
+160 279 0 
+158 277 0 
+158 274 0 
+159 272 0 
+159 272 0 
+segment end:
+segment start:
+212 333 0 
+216 331 0 
+218 333 0 
+219 337 0 
+216 340 0 
+212 339 0 
+211 337 0 
+212 333 0 
+212 333 0 
+segment end:
+segment start:
+147 210 0 
+150 201 0 
+154 197 0 
+162 195 0 
+168 196 0 
+172 199 0 
+176 204 0 
+177 210 0 
+segment end:
+segment start:
+230 332 0 
+233 338 0 
+233 346 0 
+229 353 0 
+220 357 0 
+214 356 0 
+207 352 0 
+segment end:
+segment start:
+259 286 0 
+262 300 0 
+267 307 0 
+segment end:
+segment start:
+259 210 0 
+259 286 0 
+segment end:
+segment start:
+267 307 0 
+320 362 0 
+segment end:
+segment start:
+289 210 0 
+289 286 0 
+342 341 0 
+segment end:
+segment start:
+271 207 0 
+275 206 0 
+277 207 0 
+278 211 0 
+275 214 0 
+270 212 0 
+270 209 0 
+271 207 0 
+271 207 0 
+segment end:
+segment start:
+271 287 0 
+274 286 0 
+277 287 0 
+278 290 0 
+276 294 0 
+271 293 0 
+270 290 0 
+271 287 0 
+271 287 0 
+segment end:
+segment start:
+324 341 0 
+327 340 0 
+330 342 0 
+331 346 0 
+328 348 0 
+324 348 0 
+322 344 0 
+324 341 0 
+324 341 0 
+segment end:
+segment start:
+259 210 0 
+262 201 0 
+265 198 0 
+270 195 0 
+276 195 0 
+284 199 0 
+288 205 0 
+289 210 0 
+segment end:
+segment start:
+342 341 0 
+346 350 0 
+345 357 0 
+340 363 0 
+333 366 0 
+328 366 0 
+320 362 0 
+segment end:
+segment start:
+371 286 0 
+375 300 0 
+380 307 0 
+segment end:
+segment start:
+371 210 0 
+371 286 0 
+segment end:
+segment start:
+380 307 0 
+432 362 0 
+segment end:
+segment start:
+401 210 0 
+401 286 0 
+454 341 0 
+segment end:
+segment start:
+383 207 0 
+387 206 0 
+390 209 0 
+390 212 0 
+386 214 0 
+382 212 0 
+382 209 0 
+383 207 0 
+383 207 0 
+segment end:
+segment start:
+383 287 0 
+387 286 0 
+389 287 0 
+390 292 0 
+388 294 0 
+382 292 0 
+382 290 0 
+383 287 0 
+383 287 0 
+segment end:
+segment start:
+436 341 0 
+439 340 0 
+442 342 0 
+443 345 0 
+440 349 0 
+437 348 0 
+435 346 0 
+436 341 0 
+436 341 0 
+segment end:
+segment start:
+371 210 0 
+373 203 0 
+379 197 0 
+388 195 0 
+394 197 0 
+399 202 0 
+401 210 0 
+segment end:
+segment start:
+454 341 0 
+458 348 0 
+458 354 0 
+455 360 0 
+451 364 0 
+445 366 0 
+438 365 0 
+432 362 0 
+segment end:
+segment start:
+483 284 0 
+485 294 0 
+segment end:
+segment start:
+483 210 0 
+483 284 0 
+segment end:
+segment start:
+485 294 0 
+505 354 0 
+segment end:
+segment start:
+513 210 0 
+513 284 0 
+534 345 0 
+segment end:
+segment start:
+495 207 0 
+499 206 0 
+502 208 0 
+502 211 0 
+499 214 0 
+495 213 0 
+494 210 0 
+495 207 0 
+495 207 0 
+segment end:
+segment start:
+495 283 0 
+499 281 0 
+502 284 0 
+502 287 0 
+499 290 0 
+495 289 0 
+494 284 0 
+495 283 0 
+495 283 0 
+segment end:
+segment start:
+516 343 0 
+519 342 0 
+522 344 0 
+522 348 0 
+519 350 0 
+515 349 0 
+514 345 0 
+516 343 0 
+516 343 0 
+segment end:
+segment start:
+483 210 0 
+485 203 0 
+488 199 0 
+495 195 0 
+500 195 0 
+505 196 0 
+512 203 0 
+513 210 0 
+segment end:
+segment start:
+534 345 0 
+534 352 0 
+533 356 0 
+528 362 0 
+519 365 0 
+512 363 0 
+508 359 0 
+505 354 0 
+segment end:
+segment start:
+35 445 0 
+36 454 0 
+segment end:
+segment start:
+35 370 0 
+35 445 0 
+segment end:
+segment start:
+36 454 0 
+56 515 0 
+segment end:
+segment start:
+65 370 0 
+65 445 0 
+85 505 0 
+segment end:
+segment start:
+47 367 0 
+49 366 0 
+53 367 0 
+54 371 0 
+52 374 0 
+48 374 0 
+45 371 0 
+47 367 0 
+47 367 0 
+segment end:
+segment start:
+47 443 0 
+50 442 0 
+53 443 0 
+53 448 0 
+51 450 0 
+47 449 0 
+45 446 0 
+47 443 0 
+47 443 0 
+segment end:
+segment start:
+67 503 0 
+70 502 0 
+73 503 0 
+74 507 0 
+73 509 0 
+68 510 0 
+66 508 0 
+67 503 0 
+67 503 0 
+segment end:
+segment start:
+35 370 0 
+37 362 0 
+42 357 0 
+47 355 0 
+54 356 0 
+60 359 0 
+63 364 0 
+65 370 0 
+segment end:
+segment start:
+85 505 0 
+85 514 0 
+82 519 0 
+74 524 0 
+69 525 0 
+64 523 0 
+58 519 0 
+56 515 0 
+segment end:
+segment start:
+147 428 0 
+150 442 0 
+160 453 0 
+segment end:
+segment start:
+147 370 0 
+147 428 0 
+segment end:
+segment start:
+160 453 0 
+208 484 0 
+segment end:
+segment start:
+177 370 0 
+177 428 0 
+224 459 0 
+segment end:
+segment start:
+159 367 0 
+162 366 0 
+165 367 0 
+166 370 0 
+163 374 0 
+161 374 0 
+159 373 0 
+157 370 0 
+159 367 0 
+159 367 0 
+segment end:
+segment start:
+159 431 0 
+162 430 0 
+165 432 0 
+166 435 0 
+163 438 0 
+160 438 0 
+157 434 0 
+159 431 0 
+159 431 0 
+segment end:
+segment start:
+206 462 0 
+211 461 0 
+213 464 0 
+212 468 0 
+208 469 0 
+205 466 0 
+206 462 0 
+206 462 0 
+segment end:
+segment start:
+147 370 0 
+148 363 0 
+153 358 0 
+161 355 0 
+168 356 0 
+175 363 0 
+177 370 0 
+segment end:
+segment start:
+224 459 0 
+229 464 0 
+231 472 0 
+228 481 0 
+225 484 0 
+217 487 0 
+208 484 0 
+segment end:
+segment start:
+259 428 0 
+263 443 0 
+272 453 0 
+segment end:
+segment start:
+259 370 0 
+259 428 0 
+segment end:
+segment start:
+272 453 0 
+320 484 0 
+segment end:
+segment start:
+289 370 0 
+289 428 0 
+337 459 0 
+segment end:
+segment start:
+271 367 0 
+273 366 0 
+277 367 0 
+278 369 0 
+277 373 0 
+274 374 0 
+270 373 0 
+270 368 0 
+271 367 0 
+271 367 0 
+segment end:
+segment start:
+271 431 0 
+275 430 0 
+278 433 0 
+276 437 0 
+271 437 0 
+270 433 0 
+271 431 0 
+271 431 0 
+segment end:
+segment start:
+319 462 0 
+322 461 0 
+325 463 0 
+325 468 0 
+322 469 0 
+318 467 0 
+318 463 0 
+319 462 0 
+319 462 0 
+segment end:
+segment start:
+259 370 0 
+261 363 0 
+266 358 0 
+271 355 0 
+278 356 0 
+284 359 0 
+288 366 0 
+289 370 0 
+segment end:
+segment start:
+337 459 0 
+342 466 0 
+343 472 0 
+340 481 0 
+338 484 0 
+331 487 0 
+326 487 0 
+320 484 0 
+segment end:
+segment start:
+371 423 0 
+374 435 0 
+381 445 0 
+segment end:
+segment start:
+371 370 0 
+371 423 0 
+segment end:
+segment start:
+381 445 0 
+415 476 0 
+segment end:
+segment start:
+401 370 0 
+401 423 0 
+435 453 0 
+segment end:
+segment start:
+383 367 0 
+388 366 0 
+390 368 0 
+390 371 0 
+387 374 0 
+384 374 0 
+382 372 0 
+383 367 0 
+383 367 0 
+segment end:
+segment start:
+383 424 0 
+387 423 0 
+390 426 0 
+389 430 0 
+387 431 0 
+383 430 0 
+382 428 0 
+383 424 0 
+383 424 0 
+segment end:
+segment start:
+417 454 0 
+420 453 0 
+423 454 0 
+424 458 0 
+422 461 0 
+417 460 0 
+416 457 0 
+417 454 0 
+417 454 0 
+segment end:
+segment start:
+371 370 0 
+374 361 0 
+380 356 0 
+387 355 0 
+395 358 0 
+399 363 0 
+401 370 0 
+segment end:
+segment start:
+435 453 0 
+440 461 0 
+440 468 0 
+436 475 0 
+428 479 0 
+419 478 0 
+415 476 0 
+segment end:
+segment start:
+483 423 0 
+487 438 0 
+493 445 0 
+segment end:
+segment start:
+483 370 0 
+483 423 0 
+segment end:
+segment start:
+493 445 0 
+528 476 0 
+segment end:
+segment start:
+513 370 0 
+513 423 0 
+547 453 0 
+segment end:
+segment start:
+495 367 0 
+499 366 0 
+502 369 0 
+502 372 0 
+497 374 0 
+494 370 0 
+495 367 0 
+495 367 0 
+segment end:
+segment start:
+495 424 0 
+497 423 0 
+501 424 0 
+502 427 0 
+499 431 0 
+495 430 0 
+494 425 0 
+495 424 0 
+495 424 0 
+segment end:
+segment start:
+529 454 0 
+532 453 0 
+534 454 0 
+536 456 0 
+536 460 0 
+532 462 0 
+529 460 0 
+529 455 0 
+529 454 0 
+529 454 0 
+segment end:
+segment start:
+483 370 0 
+486 361 0 
+492 356 0 
+499 355 0 
+505 357 0 
+512 363 0 
+513 370 0 
+segment end:
+segment start:
+547 453 0 
+552 460 0 
+552 466 0 
+550 473 0 
+546 477 0 
+539 479 0 
+530 477 0 
+528 476 0 
+segment end:
+segment start:
+35 575 0 
+35 579 0 
+segment end:
+segment start:
+35 530 0 
+35 575 0 
+segment end:
+segment start:
+35 579 0 
+41 627 0 
+segment end:
+segment start:
+65 530 0 
+65 575 0 
+71 623 0 
+segment end:
+segment start:
+47 527 0 
+51 527 0 
+54 530 0 
+52 534 0 
+48 534 0 
+45 532 0 
+47 527 0 
+47 527 0 
+segment end:
+segment start:
+47 573 0 
+50 572 0 
+53 575 0 
+53 578 0 
+49 580 0 
+46 578 0 
+47 573 0 
+47 573 0 
+segment end:
+segment start:
+53 621 0 
+55 620 0 
+59 621 0 
+60 625 0 
+58 627 0 
+55 628 0 
+52 626 0 
+53 621 0 
+53 621 0 
+segment end:
+segment start:
+35 530 0 
+36 525 0 
+39 520 0 
+47 516 0 
+53 516 0 
+60 519 0 
+64 526 0 
+65 530 0 
+segment end:
+segment start:
+71 623 0 
+70 630 0 
+67 635 0 
+61 639 0 
+53 640 0 
+48 639 0 
+44 635 0 
+41 627 0 
+segment end:
+segment start:
+147 575 0 
+147 579 0 
+segment end:
+segment start:
+147 530 0 
+147 575 0 
+segment end:
+segment start:
+147 579 0 
+153 627 0 
+segment end:
+segment start:
+177 530 0 
+177 575 0 
+183 623 0 
+segment end:
+segment start:
+159 527 0 
+162 526 0 
+166 529 0 
+165 533 0 
+162 535 0 
+158 533 0 
+158 529 0 
+159 527 0 
+159 527 0 
+segment end:
+segment start:
+159 573 0 
+164 572 0 
+166 576 0 
+165 579 0 
+162 580 0 
+158 579 0 
+158 575 0 
+159 573 0 
+159 573 0 
+segment end:
+segment start:
+165 621 0 
+168 620 0 
+171 621 0 
+172 625 0 
+170 628 0 
+166 628 0 
+163 625 0 
+165 621 0 
+165 621 0 
+segment end:
+segment start:
+147 530 0 
+150 521 0 
+156 516 0 
+161 515 0 
+168 517 0 
+174 522 0 
+177 528 0 
+177 530 0 
+segment end:
+segment start:
+183 623 0 
+181 633 0 
+175 639 0 
+166 640 0 
+160 638 0 
+153 629 0 
+153 627 0 
+segment end:
+segment start:
+259 576 0 
+264 593 0 
+segment end:
+segment start:
+259 530 0 
+259 576 0 
+segment end:
+segment start:
+264 593 0 
+302 649 0 
+segment end:
+segment start:
+289 530 0 
+289 576 0 
+327 633 0 
+segment end:
+segment start:
+271 527 0 
+275 526 0 
+278 529 0 
+278 532 0 
+276 534 0 
+272 534 0 
+270 532 0 
+270 528 0 
+271 527 0 
+271 527 0 
+segment end:
+segment start:
+271 576 0 
+276 575 0 
+278 578 0 
+277 581 0 
+274 583 0 
+271 582 0 
+270 577 0 
+271 576 0 
+271 576 0 
+segment end:
+segment start:
+309 632 0 
+313 631 0 
+315 632 0 
+316 635 0 
+315 638 0 
+310 639 0 
+308 637 0 
+308 633 0 
+309 632 0 
+309 632 0 
+segment end:
+segment start:
+259 530 0 
+260 524 0 
+265 518 0 
+271 516 0 
+281 517 0 
+285 521 0 
+289 528 0 
+289 530 0 
+segment end:
+segment start:
+327 633 0 
+330 641 0 
+328 649 0 
+324 653 0 
+313 656 0 
+307 654 0 
+302 649 0 
+segment end:
+segment start:
+371 576 0 
+376 593 0 
+segment end:
+segment start:
+371 530 0 
+371 576 0 
+segment end:
+segment start:
+376 593 0 
+415 649 0 
+segment end:
+segment start:
+401 530 0 
+401 576 0 
+439 633 0 
+segment end:
+segment start:
+383 527 0 
+386 526 0 
+390 528 0 
+390 532 0 
+387 535 0 
+383 533 0 
+382 529 0 
+383 527 0 
+383 527 0 
+segment end:
+segment start:
+383 576 0 
+386 574 0 
+390 577 0 
+390 581 0 
+387 583 0 
+384 582 0 
+382 580 0 
+383 576 0 
+383 576 0 
+segment end:
+segment start:
+421 632 0 
+425 631 0 
+428 633 0 
+428 636 0 
+424 639 0 
+421 637 0 
+420 633 0 
+421 632 0 
+421 632 0 
+segment end:
+segment start:
+371 530 0 
+373 523 0 
+379 517 0 
+385 515 0 
+394 518 0 
+398 522 0 
+401 527 0 
+401 530 0 
+segment end:
+segment start:
+439 633 0 
+442 639 0 
+439 649 0 
+436 653 0 
+430 656 0 
+423 655 0 
+418 653 0 
+415 649 0 
+segment end:
+path end:

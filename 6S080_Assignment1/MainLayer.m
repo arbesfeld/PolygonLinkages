@@ -18,7 +18,7 @@
 NSMutableArray *polygonLocs;
 NSMutableArray *sets;
 
-CGFloat const THRESHOLD = 20.0;
+CGFloat const THRESHOLD = 40.0;
 float const thickness = 18.0;
 BOOL polygonCompleted, segmentsCompleted, outlineCompleted;
 int fadeCounter;
@@ -32,7 +32,11 @@ CGPoint * interiorPoli;
 #pragma mark - MainLayer
 
 // MainLayer implementation
-@implementation MainLayer
+@implementation MainLayer {
+    CCMenuItemLabel *_continueButton, *_restartButton;
+    CCMenu *_exportMenu;
+    NSString *IP;
+}
 
 // Helper class method that creates a Scene with the MainLayer as the only child.
 +(CCScene *) scene
@@ -48,6 +52,76 @@ CGPoint * interiorPoli;
 	
 	// return the scene
 	return scene;
+}
+
+-(id) init
+{
+	if( (self=[super init]) ) {
+        // Standard method to create a button
+        //        CCMenuItem *menuItem = [CCMenuItemImage
+        //                                itemWithNormalImage:@"checkmarkRed" selectedImage:@"checkmarkGrey.png"
+        //                                target:self selector:@selector(checkButtonTapped:)];
+        IP = @"ws://18.111.116.130/ws";
+        CCLayerColor *background = [[CCLayerColor alloc] initWithColor:ccc4(54, 161, 141, 255)];
+        [self addChild:background z:-1];
+        
+		polygonLocs = [[NSMutableArray alloc] init];
+        
+        polygonCompleted = NO;
+        segmentsCompleted = NO;
+        outlineCompleted = NO;
+        
+        fadeCounter = 0;
+        angle = 2.0;
+        outlineScale = 0.5;
+        
+        self.isTouchEnabled = YES;
+        
+        _continueButton =           [CCMenuItemFont
+                                     itemWithString:@"Continue"
+                                     target:self selector:@selector(continueButtonTapped:)];
+        
+        _restartButton =        [CCMenuItemFont
+                                 itemWithString:@"Restart"
+                                 target:self selector:@selector(returnButtonTapped:)];
+        _continueButton.position = ccp(100, 90);
+        _continueButton.disabledColor = ccc3(100, 100, 100);
+        _continueButton.isEnabled = NO;
+        _restartButton.position = ccp(100, 40);
+        _restartButton.disabledColor = ccc3(100, 100, 100);
+        _restartButton.isEnabled = NO;
+        CCMenu *menu = [CCMenu menuWithItems:_continueButton, _restartButton, nil];
+        menu.position = CGPointZero;
+        [self addChild:menu z:0.2];
+        
+        randColor[0] = arc4random() % 255;
+        randColor[1] = arc4random() % 255;
+        randColor[2] = arc4random() % 255;
+        randColor[3] = 255 - randColor[1];
+        randColor[4] = 255 - randColor[2];
+        randColor[5] = 255 - randColor[0];
+        randColor[6] = 255 - randColor[2];
+        randColor[7] = 255 - randColor[0];
+        randColor[8] = 255 - randColor[1];
+        
+        //make sure to use the right url, it must point to your specific web socket endpoint or the handshake will fail
+        //create a connect config and set all our info here
+        WebSocketConnectConfig* config = [WebSocketConnectConfig configWithURLString:IP origin:nil protocols:[NSArray arrayWithObjects:@"http-only", @"chat", nil] tlsSettings:nil headers:nil verifySecurityKey:YES extensions:nil ];
+        config.closeTimeout = 15.0;
+        config.keepAlive = 15.0; //sends a ws ping every 15s to keep socket alive
+        
+        //setup dispatch queue for delegate logic (not required, the websocket will create its own if not supplied)
+        dispatch_queue_t delegateQueue = dispatch_queue_create("myWebSocketQueue", NULL);
+        
+        //open using the connect config, it will be populated with server info, such as selected protocol/etc
+        _ws = [[WebSocket webSocketWithConfig:config queue:delegateQueue delegate:self] retain];
+        _ws.delegate = self;
+        [_ws open];
+        //[_ws sendText:@"Hello"];
+        //release queue, it is retained by the web socket
+        dispatch_release(delegateQueue);
+	}
+	return self;
 }
 
 -(CGFloat) distanceBetweenP1:(CGPoint)p1 P2:(CGPoint)p2 
@@ -125,6 +199,50 @@ CGPoint * interiorPoli;
         ccDrawFilledCircle( p2, thickness/6, CC_DEGREES_TO_RADIANS(360), 60, NO );
     }
 }
+- (void)exportButtonTapped:(id)sender
+{
+    NSLog(@"Export button tapped");
+    
+    SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+    NSMutableArray *length1 = [[NSMutableArray alloc] initWithCapacity:100];
+    NSMutableArray *length2 = [[NSMutableArray alloc] initWithCapacity:100];
+    NSMutableArray *angles =   [[NSMutableArray alloc] initWithCapacity:100];
+    
+    for(int i = 0; i < sets.count - 2; i++) {
+        
+        CGPoint p1 = [sets[i][0] CGPointValue];
+        CGPoint ctr = [sets[i][1] CGPointValue];
+        
+        CGPoint p2 = [sets[i][2] CGPointValue];
+        if(i >= sets.count - 4) {
+            p2 = [sets[i+2][2] CGPointValue];
+        }
+        float dist1 = [self distanceBetweenP1:p1 P2:ctr];
+        float dist2 = [self distanceBetweenP1:p2 P2:ctr];
+        
+        float angle1 = atan2( (ctr.y - p1.y), (ctr.x - p1.x) );
+        float angle2 = atan2( (ctr.y - p2.y), (ctr.x - p2.x) );
+        float angle = ABS(angle2 - angle1);
+        
+        NSLog(@"set = %d, p1 = %f, ctr = %f, p2 = %f, angle = %f", i, p1.x, ctr.x, p2.x, angle);
+        [length1 addObject:[NSNumber numberWithFloat:dist1]];
+        [length2 addObject:[NSNumber numberWithFloat:dist2]];
+        [angles addObject:[NSNumber numberWithFloat:angle]];
+    }
+    
+    NSDictionary *command = [NSDictionary dictionaryWithObjectsAndKeys:
+                             (NSArray *)length1, @"Length1",
+                             (NSArray *)length2, @"Length2",
+                             (NSArray *)angles,  @"Angles",
+                             nil];
+    NSLog(@"Command = %@", command);
+    NSString *jsonCommand = [writer stringWithObject:command];
+    NSLog(@"Json command = %@", jsonCommand);
+    [_ws sendText:jsonCommand];
+    
+    [self returnButtonTapped:nil];
+    [self removeChild:_exportMenu cleanup:YES];
+}
 -(void) draw
 {
     [super draw];
@@ -133,9 +251,10 @@ CGPoint * interiorPoli;
         return;
     }
     if(segmentsCompleted && sets.count != 0) {
+        _continueButton.isEnabled = NO;
+        
         int currentPoliPoint = 0;
         //ccDrawSolidPoly(interiorPoli, polygonLocs.count, ccc4f(randColor[6]/255.0f, randColor[7]/255.0f, randColor[8]/255.0f, 255/255.0f));
-        
         glLineWidth(3.0f);
         ccDrawColor4F(0/255.0f, 0/255.0f, 0/255.0f, 255.0f/255.0f);
         //ccDrawPoly(interiorPoli, polygonLocs.count, YES);
@@ -206,7 +325,7 @@ CGPoint * interiorPoli;
                                                dist3*sin(angle3) + ctr.y - offsetY);
             if(bigArray) {
                 
-                NSLog(@"Set: %d, PoliPoint: %d, interiorDisp: (%f, %f)", i, currentPoliPoint, interiorDisp.x, interiorDisp.y);
+               // NSLog(@"Set: %d, PoliPoint: %d, interiorDisp: (%f, %f)", i, currentPoliPoint, interiorDisp.x, interiorDisp.y);
                 interiorPoli[currentPoliPoint++] = interiorDisp;
             }
             sets[i] = [[NSMutableArray alloc] initWithObjects:[NSValue valueWithCGPoint:p1Disp],
@@ -317,6 +436,7 @@ CGPoint * interiorPoli;
     }
     //stage 2 (placing the interior polygon)
     else if(outlineCompleted) {
+        _continueButton.isEnabled = YES;
         ccDrawColor4F(171/255.0f, 217/255.0f, 140/255.0f, 255.0f/255.0f);
         glLineWidth(6.0f);
         
@@ -342,9 +462,11 @@ CGPoint * interiorPoli;
     }
     //stage 1 (drawing the outline)
     else {
+        _continueButton.isEnabled = NO;
         ccDrawColor4F(171/255.0f, 217/255.0f, 140/255.0f, 255.0f/255.0f);
         glLineWidth(6.0f);
         for (int i = 0; i < [polygonLocs count] - 1; i++) {
+            _restartButton.isEnabled = YES;
             ccDrawLine( [polygonLocs[i] CGPointValue], [polygonLocs[i+1] CGPointValue]);
             ccDrawFilledCircle( [polygonLocs[i] CGPointValue], 7, CC_DEGREES_TO_RADIANS(360), 60, NO);
             
@@ -358,56 +480,6 @@ CGPoint * interiorPoli;
         }
     }
 }
--(id) init
-{
-	if( (self=[super init]) ) {
-        
-        // Standard method to create a button
-//        CCMenuItem *menuItem = [CCMenuItemImage
-//                                itemWithNormalImage:@"checkmarkRed" selectedImage:@"checkmarkGrey.png"
-//                                target:self selector:@selector(checkButtonTapped:)];
-        
-        CCLayerColor *background = [[CCLayerColor alloc] initWithColor:ccc4(54, 161, 141, 255)];
-        [self addChild:background z:-1];
-        
-		polygonLocs = [[NSMutableArray alloc] init];
-        
-        polygonCompleted = NO;
-        segmentsCompleted = NO;
-        outlineCompleted = NO;
-        
-        fadeCounter = 0;
-        angle = 2.0;
-        outlineScale = 0.5;
-        
-        self.isTouchEnabled = YES;
-        
-        CCMenuItem *menuItem = [CCMenuItemFont
-                                itemWithString:@"Continue"
-                                target:self selector:@selector(continueButtonTapped:)];
-        
-        CCMenuItem *menuItem2 = [CCMenuItemFont
-                                 itemWithString:@"Restart"
-                                 target:self selector:@selector(returnButtonTapped:)];
-        menuItem.position = ccp(100, 90);
-        menuItem2.position = ccp(100, 40);
-        CCMenu *menu = [CCMenu menuWithItems:menuItem, menuItem2, nil];
-        menu.position = CGPointZero;
-        [self addChild:menu z:0.2];
-        
-        randColor[0] = arc4random() % 255;
-        randColor[1] = arc4random() % 255;
-        randColor[2] = arc4random() % 255;
-        randColor[3] = 255 - randColor[1];
-        randColor[4] = 255 - randColor[2];
-        randColor[5] = 255 - randColor[0];
-        randColor[6] = 255 - randColor[2];
-        randColor[7] = 255 - randColor[0];
-        randColor[8] = 255 - randColor[1];
-	}
-	return self;
-}
-
 - (void) registerWithTouchDispatcher
 {
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
@@ -526,6 +598,14 @@ CGPoint * interiorPoli;
         polygonCompleted = YES;
     }
     else if(polygonCompleted && !segmentsCompleted) {
+        CCMenuItem *exportButton = [CCMenuItemFont
+                                    itemWithString:@"Print!"
+                                    target:self selector:@selector(exportButtonTapped:)];
+        
+        exportButton.position = ccp(-425, -245);
+        _exportMenu = [CCMenu menuWithItems:exportButton, nil];
+        [self addChild:_exportMenu z:0.2];
+        
         segmentsCompleted = YES;
         sets = [[NSMutableArray alloc] init];
         segmentAngle = 0.0;
@@ -556,16 +636,64 @@ CGPoint * interiorPoli;
     randColor[6] = 255 - randColor[2];
     randColor[7] = 255 - randColor[0];
     randColor[8] = 255 - randColor[1];
+    
+    _continueButton.isEnabled = NO;
+    [self removeChild:_exportMenu cleanup:YES];
 }
-// on "dealloc" you need to release all your retained objects
+
 - (void) dealloc
 {
-	// in case you have something to dealloc, do it in this method
-	// in this particular example nothing needs to be released.
-	// cocos2d will automatically release all the children (Label)
-	
-	// don't forget to call "super dealloc"
 	[super dealloc];
+}
+#pragma mark Web Socket
+/**
+ * Called when the web socket connects and is ready for reading and writing.
+ **/
+- (void) didOpen
+{
+    NSLog(@"Socket is open for business.");
+}
+
+/**
+ * Called when the web socket closes. aError will be nil if it closes cleanly.
+ **/
+- (void) didClose:(NSUInteger) aStatusCode message:(NSString*) aMessage error:(NSError*) aError
+{
+    NSLog(@"Oops. It closed.");
+}
+
+/**
+ * Called when the web socket receives an error. Such an error can result in the
+ socket being closed.
+ **/
+- (void) didReceiveError:(NSError*) aError
+{
+    NSLog(@"Oops. An error occurred = %@", aError);
+}
+
+/**
+ * Called when the web socket receives a message.
+ **/
+- (void) didReceiveTextMessage:(NSString*) aMessage
+{
+    //Hooray! I got a message to print.
+    NSLog(@"Did receive message: %@", aMessage);
+}
+
+/**
+ * Called when the web socket receives a message.
+ **/
+- (void) didReceiveBinaryMessage:(NSData*) aMessage
+{
+    //Hooray! I got a binary message.
+}
+
+/**
+ * Called when pong is sent... For keep-alive optimization.
+ **/
+- (void) didSendPong:(NSData*) aMessage
+{
+    NSLog(@"Yay! Pong was sent!");
 }
 
 @end
